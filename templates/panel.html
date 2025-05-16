@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SunDrama – Teacher Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; }
+        h1 { color: #2a9d8f; }
+        .session { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .session h3 { margin: 0; color: #264653; }
+        .session small { color: #777; }
+        .top-bar { display: flex; justify-content: space-between; margin-bottom: 30px; }
+        a.logout { color: #e76f51; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Welcome, {{ request.user.full_name }}</h1>
+        <a href="{% url 'logout' %}" class="logout">Log Out</a>
+    </div>
+    <h3 style="color:#555;">Today's Total Earned: £{{ total_earned|floatformat:2 }}</h3>
+    {% for session in sessions %}
+        <div class="session">
+            <h3>{{ session.student.name }}</h3>
+            <small>{{ session.date }} – {{ session.time_start }} to {{ session.time_end }} ({{ session.get_status_display }})</small>
+            <p><a href="{% url 'add_report' session.id %}">+ Add Report</a></p>
+        </div>
+    {% empty %}
+        <p>No sessions today.</p>
+    {% endfor %}
+</body>
+</html>
