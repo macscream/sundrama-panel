@@ -44,3 +44,14 @@ def report_pdf(request):
     response["Content-Disposition"] = 'inline; filename="report.pdf"'
     weasyprint.HTML(string=html).write_pdf(response)
     return response
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def weekly_summary(request):
+    # Bu kısım ileride veritabanından haftalık veriler çekmek için genişletilebilir
+    fake_data = [
+        {"student": "Ali", "sessions": 3, "amount": "£90"},
+        {"student": "Zara", "sessions": 2, "amount": "£60"},
+    ]
+    return render(request, "weekly_summary.html", {"summary": fake_data})
