@@ -12,3 +12,6 @@ urlpatterns = [
     path("add-report/", add_report, name="add_report"),
     path("report-pdf/", report_pdf, name="report_pdf"),
 ]
+from core.views import weekly_summary
+
+path("weekly-summary/", weekly_summary, name="weekly_summary"),
