@@ -25,3 +25,19 @@ from django.shortcuts import render
 @login_required
 def teacher_panel(request):
     return render(request, "panel.html")
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+@login_required
+def add_report(request):
+    if request.method == "POST":
+        student_name = request.POST.get("student_name")
+        notes = request.POST.get("notes")
+
+        # Şimdilik sadece ekrana bastıracağız
+        print("Report added:", student_name, notes)
+        messages.success(request, "Report successfully added!")
+        return redirect("panel")
+        
+    return render(request, "add_report.html")
