@@ -19,3 +19,9 @@ from django.shortcuts import redirect
 def logout_view(request):
     logout(request)
     return redirect("login")
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def teacher_panel(request):
+    return render(request, "panel.html")
