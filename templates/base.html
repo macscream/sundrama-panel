@@ -1,1 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SunDrama Panel</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> {# varsa stil dosyası için #}
+</head>
+<body>
+    {% block content %}
+    <!-- İçerik burada yüklenecek -->
+    {% endblock %}
+</body>
+</html>
 
