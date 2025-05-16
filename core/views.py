@@ -1,6 +1,11 @@
+
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+import weasyprint
 
 def login_view(request):
     if request.method == "POST":
@@ -13,31 +18,29 @@ def login_view(request):
         else:
             messages.error(request, "Invalid credentials")
     return render(request, "login.html")
-from django.contrib.auth import logout
-from django.shortcuts import redirect
 
 def logout_view(request):
     logout(request)
     return redirect("login")
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 @login_required
 def teacher_panel(request):
     return render(request, "panel.html")
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib import messages
 
 @login_required
 def add_report(request):
     if request.method == "POST":
         student_name = request.POST.get("student_name")
         notes = request.POST.get("notes")
-
-        # Şimdilik sadece ekrana bastıracağız
         print("Report added:", student_name, notes)
         messages.success(request, "Report successfully added!")
         return redirect("panel")
-        
     return render(request, "add_report.html")
+
+@login_required
+def report_pdf(request):
+    html = render_to_string("report_pdf.html", {"request": request})
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'inline; filename="report.pdf"'
+    weasyprint.HTML(string=html).write_pdf(response)
+    return response
