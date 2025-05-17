@@ -75,3 +75,8 @@ from django.shortcuts import render
 @login_required
 def teacher_panel(request):
     return render(request, "teacher_panel.html")
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def home_view(request):
+    return render(request, "home.html")
