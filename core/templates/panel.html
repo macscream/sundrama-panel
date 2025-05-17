@@ -30,3 +30,13 @@
     {% endfor %}
 </body>
 </html>
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Welcome, {{ request.user.username }}!</h2>
+
+  <div class="dashboard-buttons">
+    <a href="{% url 'add_report' %}" class="btn">Add New Report</a>
+    <a href="{% url 'report_pdf' %}" class="btn">View PDF Report</a>
+    <a href="{% url 'weekly_summary' %}" class="btn">Weekly Summary</a>
+  </div>
+{% endblock %}
