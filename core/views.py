@@ -55,3 +55,17 @@ def weekly_summary(request):
         {"student": "Zara", "sessions": 2, "amount": "£60"},
     ]
     return render(request, "weekly_summary.html", {"summary": fake_data})
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def login_view(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("teacher_panel")  # Giriş başarılı → panel sayfası
+        else:
+            return render(request, "login.html", {"error": "Invalid credentials"})
+    return render(request, "login.html")
