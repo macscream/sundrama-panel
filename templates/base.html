@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>SunDrama Panel</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'styles.css' %}"> {# varsa stil dosyası için #}
+
+    <!-- Favicon bağlantısı -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Stil dosyasını bağla -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
     {% block content %}
     <!-- İçerik burada yüklenecek -->
