@@ -19,3 +19,4 @@ path("favicon.ico", lambda request: HttpResponse("", content_type="image/x-icon"
 from .views import login_view
 
 path("login/", login_view, name="login"),
+path("panel/", teacher_panel, name="teacher_panel"),
