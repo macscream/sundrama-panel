@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Panel</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h2>Welcome, {{ request.user.first_name }}!</h2>
+    <ul>
+        <li><a href="/add-report/">➕ Add Report</a></li>
+        <li><a href="/my-reports/">📄 View My Reports</a></li>
+        <li><a href="/weekly-summary/">📆 Weekly Summary</a></li>
+        <li><a href="/logout/">🚪 Logout</a></li>
+    </ul>
+</body>
+</html>
