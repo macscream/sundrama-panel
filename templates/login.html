@@ -1,6 +1,21 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block content %}
-<!-- Buraya login formun -->
+<h2>Giriş Yap</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Kullanıcı Adı" required>
+    <input type="password" name="password" placeholder="Şifre" required>
+    <button type="submit">Giriş Yap</button>
+</form>
+
+{% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
 {% endblock %}
 
 <!DOCTYPE html>
