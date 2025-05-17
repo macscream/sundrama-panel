@@ -69,3 +69,9 @@ def login_view(request):
         else:
             return render(request, "login.html", {"error": "Invalid credentials"})
     return render(request, "login.html")
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def teacher_panel(request):
+    return render(request, "teacher_panel.html")
