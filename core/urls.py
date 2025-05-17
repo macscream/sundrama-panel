@@ -15,3 +15,4 @@ urlpatterns = [
     path("report-pdf/", report_pdf, name="report_pdf"),
     path("weekly-summary/", weekly_summary, name="weekly_summary"),
 ]
+path("favicon.ico", lambda request: HttpResponse("", content_type="image/x-icon")),
