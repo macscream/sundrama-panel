@@ -20,3 +20,8 @@ from .views import login_view
 
 path("login/", login_view, name="login"),
 path("panel/", teacher_panel, name="teacher_panel"),
+from .views import home_view
+
+urlpatterns += [
+    path("home/", home_view, name="home"),
+]
