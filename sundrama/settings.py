@@ -66,3 +66,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'
 AUTH_USER_MODEL = 'core.Teacher'
 
+'DIRS': [os.path.join(BASE_DIR, 'templates')],
